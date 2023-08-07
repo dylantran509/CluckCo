@@ -1,60 +1,53 @@
-
-//From Video
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-
-//Extras
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
+import javafx.stage.Stage;
 
 public class App extends Application {
 
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Cluck&Co.fxml"));
-        primaryStage.setTitle("Cluck & Co.");
-        primaryStage.setScene(new Scene(root, 1315, 890));
-        primaryStage.show();
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private static Stage window;
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        URL url = new File("<REPLACE WITH PATH>/cart-ui.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        stage.setTitle("Shopping Cart App");
+        stage.setScene(new Scene(root, Color.TRANSPARENT));
+
+        // phase 2
+        stage.initStyle(StageStyle.TRANSPARENT);
+        makeDraggable(root);
+        stage.show();
+
+        window = stage;
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 
 
-    //Ignore: 
-    /* 
-    @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World' ");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+    public static Stage getWindow() {
+        return window;
+    }
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
+    private void makeDraggable(Parent root){
+        root.setOnMousePressed( e -> {
+            xOffset = e.getSceneX();
+            yOffset = e.getSceneY();
         });
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-
-Scene scene = new Scene(root, 300, 250);
-
-        primaryStage.setTitle("Cluck & Co.");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-*/
-    
-
-    public static void main(String[] args) throws Exception {
-        launch(args);
+        root.setOnMouseDragged( e -> {
+            window.setX( e.getScreenX() - xOffset);
+            window.setY( e.getScreenY() - yOffset);
+        });
     }
+
 }
