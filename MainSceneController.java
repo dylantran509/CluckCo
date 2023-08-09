@@ -1,3 +1,5 @@
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -5,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+import com.hellocode.shoppingcart.home.HomeView;
 
 public class MainSceneController implements Initializable{
 
@@ -26,14 +31,20 @@ public class MainSceneController implements Initializable{
     "WV", "WI", "WY"
     };
      
+    @FXML
+    BorderPane contentPane;
+    
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
     shippingCountry.getItems().addAll(Countries);
     shippingState.getItems().addAll(States);
 
-    
     // shippingCountry.setOnAction(this::getCountry);
-}
+    }
+
+    public void showHomeView() throws IOException{
+        contentPane.setCenter(new HomeView().getView());}
+
     // public void getCountry (ActionEvent event){
         // String myCountry = shippingCountry.getValue();
     //     shippingLabel.setText(myCountry);
