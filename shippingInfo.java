@@ -21,14 +21,18 @@ public class shippingInfo implements Initializable{
 	private Scene scene;
 	private Parent root;
 	
-	public void switchShippingCosts(ActionEvent event) throws IOException, java.lang.reflect.InvocationTargetException {
-        try{Parent tableViewParent = FXMLLoader(getClass().getResource("shippingCosts.fxml"));	
-		Scene tableViewScene = new Scene(tableViewParent);	
+	public void switchShippingCosts(ActionEvent event) throws IOException {
+        try {
+            Parent root = FXMLLoader(getClass().getResource("shippingCosts.fxml"));	
+        System.out.println();
+		Scene tableViewScene = new Scene(root);
+        System.out.println();	
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-    } catch	(java.lang.reflect.InvocationTargetException itex) { System.out.println(("invocation target exception occurred")); 
-    itex.getCause(); } 
+    } catch	(Exception e) { System.out.println(("invocation target exception occurred")); 
+    // itex.getCause();
+ } 
     }
 
 // scene = new Scene(root);
