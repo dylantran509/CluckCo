@@ -1,5 +1,6 @@
 //German 
 //Updated 8/12/2024
+//Working Home page.
 
 
 import java.io.IOException;
