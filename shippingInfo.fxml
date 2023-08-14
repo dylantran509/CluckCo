@@ -29,12 +29,12 @@
       <TextField fx:id="userCity" layoutX="95.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" promptText="City" />
       <ComboBox fx:id="shippingStates" layoutX="216.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" />
       <TextField fx:id="userZipCode" layoutX="334.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" promptText="Zip Code" />
-      <AnchorPane layoutX="585.0" prefHeight="768.0" prefWidth="439.0">
+      <AnchorPane layoutX="577.0" prefHeight="768.0" prefWidth="439.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </AnchorPane>
       <Button layoutX="256.0" layoutY="524.0" mnemonicParsing="false" onAction="#switchShippingCosts" prefHeight="43.0" prefWidth="185.0" text="Continue to Shipping" />
-      <Button layoutX="97.0" layoutY="536.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" text="Button" />
+      <Button layoutX="97.0" layoutY="530.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="97.0" text="Cart" />
    </children>
 </AnchorPane>
