@@ -2,30 +2,39 @@
 //Updated 8/12/2023
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
 
 
 public class homeControl implements Initializable {
 
-   @FXML
+
+
+    @FXML
     private VBox prodBox;
 
     @FXML
     private GridPane prodContainer;
     private List<product> productList;
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     
     @Override
@@ -40,7 +49,7 @@ public class homeControl implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("product.fxml"));
 
                 VBox prodBox = fxmlLoader.load();
-                prodController prodCntrl = fxmlLoader.getController();
+                prodControl prodCntrl = fxmlLoader.getController();
                 prodCntrl.setData(prod);
 
                 if(column ==6){
@@ -56,6 +65,19 @@ public class homeControl implements Initializable {
         }
     }
 
+
+    public void toCart(ActionEvent event) throws IOException{
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+        root = fxmlLoader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene  = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    //PRODUCT LIST
     private List<product> productList(){
         List<product> ls = new ArrayList<>();
         
@@ -95,4 +117,6 @@ public class homeControl implements Initializable {
     }
 
 }
+
+
 
