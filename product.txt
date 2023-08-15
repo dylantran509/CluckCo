@@ -1,0 +1,4 @@
+Black Hoodie_blackHoodie.png_50.00
+Black Shirt_blackShirt.png_25.00
+Black Hat_hat.png_20.00
+Sticker_logo.png_5.00
