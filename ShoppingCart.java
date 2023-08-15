@@ -1,20 +1,32 @@
-package Cart;
+package CluckCo.shoppingCart.cart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import CluckCo.shoppingCart.home.Product;
 
 public class ShoppingCart {
     private Map<String, CartEntry> entries;
+    
+    private static ShoppingCart INSTANCE;
 
+    public static ShoppingCart getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new ShoppingCart();
+        }
+        return INSTANCE;
+    }
     public ShoppingCart(){
         this.entries = new HashMap<>();
     }
 
     public void addProduct(String productName){
         CartEntry productEntry = entries.get(productName.toUpperCase());
-        if(productEntry != null){
+        if(productEntry!= null){
             productEntry.increaseQuantity();
-        } else{
+        }else{
             Product product = Product.valueOf(productName);
             CartEntry entry = new CartEntry(product, 1);
             entries.put(productName.toUpperCase(), entry);
@@ -25,12 +37,12 @@ public class ShoppingCart {
         CartEntry productEntry = entries.get(productName.toUpperCase());
         if(productEntry != null){
             productEntry.decreaseQuantity();
-        }
+        }    
     }
 
     public int getQuantity(String productName){
         CartEntry entry = entries.get(productName.toUpperCase());
-        if(entry != null){
+        if(entry!= null){
             return entry.getQuantity();
         }
         return 0;
@@ -39,10 +51,14 @@ public class ShoppingCart {
     public float calculateTotal(){
         float total = 0;
         for(CartEntry entry:entries.values()){
-            float entryCost = entry.getProduct().getPrice() * entry.getQuantity();
+            float entryCost = entry.getProduct().getPrice()*entry.getQuantity();
             total += entryCost;
         }
         return total;
+    }
+
+    public List<CartEntry> getEntries(){
+        return new ArrayList<>(entries.values());
     }
 
 
