@@ -1,5 +1,5 @@
-module com.hellocode.shoppingcart {
+module CluckCo.shoppingCart {
     requires javafx.controls;
     requires javafx.fxml;
-    exports com.hellocode.shoppingcart.step1;
+    exports CluckCo.shoppingCart;
 }
