@@ -7,14 +7,8 @@ import javafx.scene.image.Image;
 
 
 
-public class prodController {
+public class prodControl {
 
-
-    //Do I need another prodbox for all the labels?
-
-    //for Card
-    //In video VBox is labeled Box for the card itself (the pane)
-    //not even created on the video.... for second part
     @FXML
     private VBox prodCard;
     
@@ -37,14 +31,12 @@ public class prodController {
     private String[] colors = {"#fff"};
 
 
-
-
     public void setData(product prod){
         Image image = new Image(getClass().getResourceAsStream(prod.getProdImg()));
         img.setImage(image);
         
         prodName.setText(prod.getProdName());
-        prodPrice.setText(prod.getProdPrice());
+        prodPrice.setText("$"+prod.getProdPrice());
 
         //This part was not included for the botttom scroll thing
         prodCard.setStyle("-fx-background-color: #" + colors[(int)(Math.random()*colors.length)] + ";" +
