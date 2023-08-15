@@ -1,7 +1,5 @@
 //German Wong
-//Updated 8/12/2023
-
-
+//Updated 8/14/2023
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +11,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,8 +23,6 @@ import javafx.scene.Node;
 
 
 public class homeControl implements Initializable {
-
-
 
     @FXML
     private VBox prodBox;
@@ -36,15 +35,19 @@ public class homeControl implements Initializable {
     private Scene scene;
     private Parent root;
 
+    private List<product> prodList = new ArrayList();
+    
     
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        productList = new ArrayList<>(productList());
+
         int column = 0;
         int row = 1; 
-
+        
+        readfile();
+        
         try {
-            for(product prod : productList){
+            for(product prod : prodList){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("product.fxml"));
 
@@ -63,6 +66,41 @@ public class homeControl implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+    }
+    
+    //filePath TO BE CHANGED DEPENDING ON USER PATH
+    String filePath = "/Users/germanwong/Desktop/Comp380/380Project/src/product.txt";
+
+    void readfile(){
+        File file = new File(filePath);
+
+
+        try {                                                              
+            FileReader fileReader = new FileReader(file);                 
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                //System.out.println(line);
+                setData(line);
+                line = bufferedReader.readLine();
+            }
+
+            bufferedReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    void setData(String line){
+        String[] prod = line.split("_");
+        double price = Double.parseDouble(prod[2]);
+
+        product temp = new product(prod[0],"/img/"+prod[1],prod[2],price);
+        prodList.add(temp);
     }
 
 
@@ -76,47 +114,3 @@ public class homeControl implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-    //PRODUCT LIST
-    private List<product> productList(){
-        List<product> ls = new ArrayList<>();
-        
-        //Black Hoodie
-        product prod = new product();
-        prod.setProdName("Black Hoodie");
-        prod.setProdImg("/img/blackHoodie.png");
-        prod.setProdPrice("$50.00");
-        prod.setProdDPrice(50.00);
-        ls.add(prod);
-        
-        //Black Shirt
-        prod = new product();
-        prod.setProdName("Black Shirt");
-        prod.setProdImg("/img/blackShirt.png");
-        prod.setProdPrice("$25.00");
-        prod.setProdDPrice(25.00);
-        ls.add(prod);
-
-        //Black Hat
-        prod = new product();
-        prod.setProdName("Black Hat");
-        prod.setProdImg("/img/hat.png");
-        prod.setProdPrice("$20.00");
-        prod.setProdDPrice(20.00);
-        ls.add(prod);
-
-        //Cluck & Co. Sticker
-        prod = new product();
-        prod.setProdName("Cluck & Co. Sticker");
-        prod.setProdImg("/img/logo.png");
-        prod.setProdPrice("$5.00");
-        prod.setProdDPrice(5.00);
-        ls.add(prod);
-
-        return ls;
-    }
-
-}
-
-
-
