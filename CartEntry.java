@@ -1,5 +1,8 @@
+package CluckCo.shoppingCart.cart;
 
-public class CartEntry {
+import CluckCo.shoppingCart.home.Product;
+
+public class CartEntry{
     private Product product;
     private int quantity;
 
@@ -8,7 +11,7 @@ public class CartEntry {
         this.quantity = quantity;
     }
 
-    public Product getProduct(){
+    public Product getProduct() {
         return product;
     }
 
