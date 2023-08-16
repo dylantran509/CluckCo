@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class SearchController implements Initializable {
 
     ArrayList<String> words = new ArrayList<>(
-            Arrays.asList("Black Hoodie", "Black Hat", "Black Shirt", "Sticker")
+            Arrays.asList("Black Hoodie          $50.00", "Black Hat             $20.00", "Black Shirt           $25.00", "Sticker                $5.00")
     );
 
     @FXML
