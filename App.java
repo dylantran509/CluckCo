@@ -31,6 +31,10 @@ public class App extends Application {
     //private static Stage window;
 
     @Override
+    /**
+     * The start method is called after the system is ready for the application to begin running. 
+     * @param primaryStage This object is constructedby the Shopping Cart App
+     */
     public void start(Stage primaryStage){
         
     /**
@@ -57,6 +61,7 @@ public class App extends Application {
     }
     /**
      * Main method executes Shopping Cart App
+     * @param args An array of String arguments passed to the App when it's launched.
      */
     public static void main(String[] args) { launch(); }
     

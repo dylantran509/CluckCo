@@ -10,15 +10,17 @@ package CluckCo.shoppingCart;
 
 public class SystemInfo {
 
-    /*
+    /**
      * Allows for use of Java's recent version.
+     * @return Gets the system property indicated by 'java.version' key
      */
     public static String javaVersion() {
         return System.getProperty("java.version");
     }
 
-    /*
+    /**
      * Allows for use of JaveFX recent version.
+     * @return Gets the system property indicated by 'javafx.version' key
      */
     public static String javafxVersion() {
         return System.getProperty("javafx.version");

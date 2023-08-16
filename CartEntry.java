@@ -15,8 +15,8 @@ public class CartEntry{
 
     /**
      * Constructor for CartEntry method
-     * @param product
-     * @param quantity
+     * @param product Assigns a single object for the value 'product'
+     * @param quantity Assigns a single object for the value "quantity"
      */
     public CartEntry(Product product, int quantity){
         this.product = product;
@@ -25,7 +25,7 @@ public class CartEntry{
 
     /**
      * Returns product variable of type Product
-     * @return
+     * @return product Instance of an object 'product' is given
      */
     public Product getProduct() {
         return product;
@@ -33,7 +33,7 @@ public class CartEntry{
 
     /**
      * Returns quantity variable of type int
-     * @return
+     * @return quantity Instance of an object "quantity" is given
      */
     public int getQuantity(){
         return quantity;

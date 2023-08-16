@@ -20,6 +20,7 @@ public class CartView {
     
     /**
      * Creates Parent class called root that uses a URL path to call cart.fxml
+     * @throws IOException Gives an exception if path to cart.fxml fails.
      */
     public CartView() throws IOException{
         URL uiFile = new File("/Users/regio/tutorials/shoppingCart/src/main/java/CluckCo/shoppingCart/cart/cart.fxml").toURI().toURL();
@@ -27,6 +28,10 @@ public class CartView {
         this.view = root;
     }
 
+    /**
+     * Retrieves an instance of the Cart View with order items
+     * @return this.view Instance of an object under Cart View is given
+     */
     public Parent getView(){
         return this.view;
     }

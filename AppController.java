@@ -24,7 +24,10 @@ import javafx.scene.layout.BorderPane;
 
 public class AppController /*implements Initializable*/{
 
-    @FXML
+    @FXML 
+    /**
+     * Lays out children in top, left, right, bottom, and center positions.
+     */
     BorderPane contentPane;
 
     // @Override
@@ -39,7 +42,7 @@ public class AppController /*implements Initializable*/{
 
         /**
          * Method creates separate page as platform for Home View, meant to show display of products
-         * @throws IOException
+         * @throws IOException Signals that an I/O exception of some sort has occurred.
          */
         public void showHomeView() throws IOException{
             contentPane.setCenter(new HomeView().getView());
@@ -47,7 +50,7 @@ public class AppController /*implements Initializable*/{
 
         /**
          * Method creates separate page as platform for Cart View, meant to show display of User's order.
-         * @throws IOException
+         * @throws IOException Signals that an I/O exception of some sort has occurred.
          */
         public void showCartView() throws IOException{
             contentPane.setCenter(new CartView().getView());

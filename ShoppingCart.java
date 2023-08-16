@@ -20,6 +20,9 @@ public class ShoppingCart {
     
     private static ShoppingCart INSTANCE;
 
+    /**
+     * Returns an instance of method 'INSTANCE', declared above.
+     */
     public static ShoppingCart getInstance(){
         if(INSTANCE == null){
             INSTANCE = new ShoppingCart();
@@ -32,6 +35,7 @@ public class ShoppingCart {
 
     /**
      * Increases the quantity of products by one as desired by customer
+     * @String productName
     */
     public void addProduct(String productName){
         CartEntry productEntry = entries.get(productName.toUpperCase());
@@ -47,6 +51,7 @@ public class ShoppingCart {
     /**
      * Removes the quantity of products by one as desired by customer
      * Unable to have negative quantity of products
+     * @String productName Method takes the name of product which is a String Value
     */
     public void removeProduct(String productName){
         CartEntry productEntry = entries.get(productName.toUpperCase());
@@ -57,6 +62,7 @@ public class ShoppingCart {
 
     /**
      * Obtains final count of each product in Cart View
+     * @String productName Method takes the name of product which is a String Value
     */
     public int getQuantity(String productName){
         CartEntry entry = entries.get(productName.toUpperCase());
@@ -68,7 +74,7 @@ public class ShoppingCart {
 
     /**
      * Adds up total pricing of all products dependant on individual product price and its count
-     * @return
+     * @return total Takes in the final total
      */
     public float calculateTotal(){
         float total = 0;
@@ -80,7 +86,8 @@ public class ShoppingCart {
     }
 
     /**
-     * Returns a List of each Customer order within respective cart
+     * Creates a List of each Customer order within respective cart
+     * @return new ArrayList<>(entries.values()) Takes in an ArrayList object 
      */
     public List<CartEntry> getEntries(){
         return new ArrayList<>(entries.values());

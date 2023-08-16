@@ -29,18 +29,20 @@ import javafx.scene.layout.VBox;
 public class HomeController {
     
     @FXML
-    /*
-    * Allows for products to be evenly distributed across the order page in the cart.
+    /**
+     * Allows for products to be evenly distributed across the order page in the cart.
      */
     private GridPane productGridPane;
 
     @FXML
+    /**
+     * All 4 products are placed in a designated position in the cart view page.
+     * @throws FileNotFoundException Signals that an attempt to open the .jpg file denoted by pathname has failed.
+     */
     public void initialize() throws FileNotFoundException{
         productGridPane.getChildren().clear();
 
-        /**
-         * All 4 products are placed in a designated position in the cart view page.
-        */ 
+        
         VBox productView1 = productView(Product.APPLE);
         productGridPane.add(productView1, 0, 0);
 
@@ -56,6 +58,9 @@ public class HomeController {
 
     /**
      * Creates grid and borders for the general layout of products
+     * @param product Takes in a value name 'product' of type Product from Product.java
+     * @throws FileNotFoundException Signals that an attempt to open the .jpg file denoted by pathname has failed.
+     * @return layout Returns an object of the overall layout of Home View  
     */
     private VBox productView(Product product) throws FileNotFoundException{
         VBox layout = new VBox();

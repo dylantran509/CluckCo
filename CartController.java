@@ -40,8 +40,6 @@ public class CartController {
      * This method initializes a shopping cart as an instance of a List data structure with no entries. In the shopping cart, there are labels
      * for added items if any items are to be added from the product page; otherwise, the cart is labeled as empty. If the shopping cart has items in it,
      * the information about the items, including their names, prices, and images. This method additionally separates the displays of the products in the cart.
-     * @param N/A
-     * @returns None
      */
     @FXML
     public void initialize() throws FileNotFoundException{
@@ -71,10 +69,11 @@ public class CartController {
     }
 
     /**
-     * This method displays a calculated total of the prices of any items that have been added to the cart. The method determines the way that the total is
+     * This method displays a calculated total of the prices of all items that have been added to the cart. 
+     * The method determines the way that the total is
      * displayed on the interface in terms of its position and appearance.
-     * @param totalPrice
-     * @return layout (total price in the interface)
+     * @param totalPrice Takes the total order price as type float
+     * @return layout Gives final display of price
      */
     private HBox totalView(float totalPrice){
         HBox layout = new HBox();
@@ -93,9 +92,9 @@ public class CartController {
      * This method displays buttons for each product in the cart and also adjusts the total price of the items. The buttons are there to add to or subtract
      * from the quantity of each item in the cart. The buttons are positioned accordingly to the displays of the items in the cart so that they are positioned
      * in a consistent manner. Along with these buttons - one for adding and one for subtracting - is a display of the product's image, name, and price.
-     * @param cartEntry
-     * @return None
-     * @throws FileNotFoundException
+     * @param cartEntry Takes variable of type 'CartEntry', created from CartEntry.java
+     * @return layout Outputs the display of a single product, with its buttons, in Cart View
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a resources has failed.
      */
     private HBox cartEntryView(CartEntry cartEntry) throws FileNotFoundException{
         HBox layout = new HBox();

@@ -19,6 +19,7 @@ public class HomeView {
 
     /**
      * Creates Parent class called root that uses a URL path to call home.fxml
+     * @throws IOException Signals that an I/O exception has occured from incorrectly finding the airplan. 
      */
     public HomeView() throws IOException{
         URL url = new File("/Users/regio/tutorials/shoppingCart/src/main/java/CluckCo/shoppingCart/home/home.fxml").toURI().toURL();

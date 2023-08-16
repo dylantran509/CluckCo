@@ -22,8 +22,8 @@ public enum Product {
 
     /**
      * Constructor for Product's imageFile variable and price
-     * @param imageFile
-     * @param price
+     * @param imageFile Assigns an object to variable imageFile
+     * @param price Assigns an object to variable price
      */
     private Product(String imageFile, float price){
         this.imageFile = imageFile;
@@ -32,7 +32,7 @@ public enum Product {
 
     /**
      * Grabs Product Image
-     * @return
+     * @return imageFile
      */
     public String getImageFile(){
         return imageFile;
@@ -40,7 +40,7 @@ public enum Product {
 
     /**
      * Grabs Product price
-     * @return
+     * @return this.price
      */
     public float getPrice(){
         return this.price;
