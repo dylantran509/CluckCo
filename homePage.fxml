@@ -64,6 +64,7 @@
                               </ImageView>
                            </children>
                         </HBox>
+                        <Button mnemonicParsing="false" onAction="#toSearchWindow" text="Button" />
                         <Separator orientation="VERTICAL" prefHeight="200.0" translateX="28.0" />
                         <Pane maxHeight="-Infinity" prefHeight="42.0" prefWidth="989.0" translateX="49.0" />
                         <Button mnemonicParsing="false" onAction="#toCart" prefHeight="25.0" prefWidth="31.0" translateX="23.0" translateY="6.0">
