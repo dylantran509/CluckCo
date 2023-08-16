@@ -1,0 +1,59 @@
+/**
+ * Date: 08/03/2023
+ * Main display for the Front Page view of the Shopping Cart App 
+ * This class includes access to Home View and Cart View using buttons on left side of the app.
+ * @author David Regio
+ * @version 1.0 
+*/
+
+//import java.net.URL;
+//import java.util.ResourceBundle;
+//import javafx.fxml.Initializable;
+//import javafx.scene.control.Button;
+//import javafx.scene.control.Label;
+//import javafx.event.ActionEvent;
+
+package CluckCo.shoppingCart;
+
+import CluckCo.shoppingCart.cart.CartView;
+import CluckCo.shoppingCart.home.HomeView;
+import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
+
+
+public class AppController /*implements Initializable*/{
+
+    @FXML
+    BorderPane contentPane;
+
+    // @Override
+    //  public void initialize(URL location, ResourceBundle resources){
+        // try{
+
+        /* 
+        public void closeApp(){
+            App.getWindow().close();
+        }
+        */
+
+        /**
+         * Method creates separate page as platform for Home View, meant to show display of products
+         * @throws IOException
+         */
+        public void showHomeView() throws IOException{
+            contentPane.setCenter(new HomeView().getView());
+        }
+
+        /**
+         * Method creates separate page as platform for Cart View, meant to show display of User's order.
+         * @throws IOException
+         */
+        public void showCartView() throws IOException{
+            contentPane.setCenter(new CartView().getView());
+        }
+    // } catch (IOException e){
+    //     e.printStackTrace();
+    // }
+}
+//}
