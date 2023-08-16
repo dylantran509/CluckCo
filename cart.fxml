@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 
 <VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-    fx:controller="CluckCo.shoppingcart.cart.CartController">
+    fx:controller="CartController">
     <VBox fx:id="productGridPane" >
         <padding>
             <Insets top="25" right="25" bottom="25" left="25"/>
