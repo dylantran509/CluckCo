@@ -7,10 +7,10 @@
 
 package CluckCo.shoppingCart.cart;
 
-import CluckCo.shoppingCart.home.Product;
+import CluckCo.shoppingCart.home.cartProduct;
 
 public class CartEntry{
-    private Product product;
+    private cartProduct product;
     private int quantity;
 
     /**
@@ -18,7 +18,7 @@ public class CartEntry{
      * @param product Assigns a single object for the value 'product'
      * @param quantity Assigns a single object for the value "quantity"
      */
-    public CartEntry(Product product, int quantity){
+    public CartEntry(cartProduct product, int quantity){
         this.product = product;
         this.quantity = quantity;
     }
@@ -27,7 +27,7 @@ public class CartEntry{
      * Returns product variable of type Product
      * @return product Instance of an object 'product' is given
      */
-    public Product getProduct() {
+    public cartProduct getProduct() {
         return product;
     }
 

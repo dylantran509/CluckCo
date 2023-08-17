@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import CluckCo.shoppingCart.home.Product;
+import CluckCo.shoppingCart.home.cartProduct;
 
 public class ShoppingCart {
     private Map<String, CartEntry> entries;
@@ -42,7 +42,7 @@ public class ShoppingCart {
         if(productEntry!= null){
             productEntry.increaseQuantity();
         }else{
-            Product product = Product.valueOf(productName);
+            cartProduct product = cartProduct.valueOf(productName);
             CartEntry entry = new CartEntry(product, 1);
             entries.put(productName.toUpperCase(), entry);
         }
