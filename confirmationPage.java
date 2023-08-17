@@ -1,3 +1,10 @@
+/**
+ * User should get a confirmation page to their email 
+ * with what they had ordered
+ * In Progress
+ * @author S. Chang
+ * @version 1.0
+ */
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,9 +37,20 @@ public class confirmationPage implements Initializable{
     private Scene scene;
     private Parent root;
 
+    @FXML
+    Label confirmationLabel;
+
+    public void displayConfirmationReceipt(String userFirstName, String userLastName, String userEmailAddress) {
+        confirmationLabel.setText("Hello your order was received and an email was sent to your email address! \n Thank you for shopping with us! ");
+    }
 
 
 
+    
+    /** 
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
 

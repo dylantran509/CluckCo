@@ -1,3 +1,10 @@
+/**
+ * Shipping information is needed to put in by the user on
+ * where the delivery should take place
+ * @author S. Chang
+ * @version 1.0
+ */
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,27 +23,47 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class shippingInfo implements Initializable{
-    
+    /** 
+     * User inputs their Email Address
+    */ 
     @FXML
 	TextField userEmailAddress;
 
+    /**
+     * User selects what Country they are in
+     */
     @FXML
     private ChoiceBox<String> shippingCountry;
     private String[] Countries = 
     {"United States of America"};
 
+    /** 
+     * User inputs their Name
+    */ 
     @FXML
     TextField userFirstName;
 
+    /** 
+    * User inputs their Last Name
+    */
     @FXML
     TextField userLastName;
     
+    /** 
+     * User inputs what address they live in
+    */
     @FXML
     TextField userAddress;
     
+    /**
+     * User inputs what city
+     */
     @FXML
     TextField userCity; 
 
+    /**
+     * User selects what state they are from
+     */
     @FXML
     private ComboBox<String> shippingStates;
     private String[] States = 
@@ -46,6 +73,9 @@ public class shippingInfo implements Initializable{
     "WV", "WI", "WY"
     };
 
+    /**
+     * User inputs what zip code they are in
+     */
     @FXML
     TextField userZipCode;
 
@@ -53,6 +83,9 @@ public class shippingInfo implements Initializable{
     private Scene scene;
     private Parent root;
 
+    /** After user inputs shipping information, user gets to go to the next page to enter payment
+     * @param event Something happens when user clicks a button
+     */
 	
 	public void switchShippingCosts(ActionEvent event) throws IOException{
         
@@ -64,21 +97,23 @@ public class shippingInfo implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("shippingCosts.fxml"));
         root = loader.load();
         shippingCosts userInfo = loader.getController();
-        userInfo.displayShippingAddress(firstName, lastName, address);
+        userInfo.displayShippingAddress(firstName, lastName, address, email);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene  = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     
-    @FXML
-    private Label shippingLabel;
- 
 
-
+    /**
+     * shippingCountry gets all the items in the array list for Countries
+     * shippingStates gets all the items in the array list for States
+     * @param location
+     * @param resources
+     */
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1){
+    public void initialize(URL location, ResourceBundle resources){
     shippingCountry.getItems().addAll(Countries);
     shippingStates.getItems().addAll(States);
 
