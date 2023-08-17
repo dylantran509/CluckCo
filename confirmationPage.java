@@ -36,16 +36,6 @@ public class confirmationPage implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    @FXML
-    Label confirmationLabel;
-
-    public void displayConfirmationReceipt(String userFirstName, String userLastName, String userEmailAddress) {
-        confirmationLabel.setText("Hello your order was received and an email was sent to your email address! \n Thank you for shopping with us! ");
-    }
-
-
-
     
     /** 
      * @param location

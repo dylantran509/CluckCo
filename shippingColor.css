@@ -1,0 +1,19 @@
+.gradient{
+    -fx-background-color: linear-gradient(to bottom right, #FFF8E3, #FFDF98)
+}
+
+.cart-color{
+    -fx-background-color: #D5AAFF
+}
+
+.pay-now{
+    -fx-background-color: #8EDD85
+}
+
+.header-window{
+    -fx-background-color: #777777
+}
+
+.confirmation-page{
+    -fx-background-color: #FFF8E3
+}
