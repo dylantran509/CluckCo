@@ -29,12 +29,21 @@
       <TextField fx:id="userCity" layoutX="95.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" promptText="City" />
       <ComboBox fx:id="shippingStates" layoutX="216.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" />
       <TextField fx:id="userZipCode" layoutX="334.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" promptText="Zip Code" />
-      <AnchorPane layoutX="577.0" prefHeight="768.0" prefWidth="439.0">
+      <Button layoutX="256.0" layoutY="524.0" mnemonicParsing="false" onAction="#switchShippingCosts" prefHeight="43.0" prefWidth="185.0" text="Continue to Shipping" />
+      <Button layoutX="97.0" layoutY="530.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="97.0" text="Cart" />
+      <AnchorPane layoutX="585.0" prefHeight="768.0" prefWidth="439.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <children>
+            <Label layoutX="55.0" layoutY="533.0" prefHeight="43.0" prefWidth="329.0" text="Total:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="shippingCosts" layoutX="55.0" layoutY="479.0" prefHeight="43.0" prefWidth="329.0" text="Shipping:                                             Calculated at Next Step" />
+            <Label layoutX="55.0" layoutY="428.0" prefHeight="43.0" prefWidth="329.0" text="Subtotal:" />
+         </children>
       </AnchorPane>
-      <Button layoutX="256.0" layoutY="524.0" mnemonicParsing="false" onAction="#switchShippingCosts" prefHeight="43.0" prefWidth="185.0" text="Continue to Shipping" />
-      <Button layoutX="97.0" layoutY="530.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="97.0" text="Cart" />
    </children>
 </AnchorPane>
