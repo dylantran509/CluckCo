@@ -53,5 +53,7 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label fx:id="zipError" layoutX="334.0" layoutY="497.0" prefHeight="17.0" prefWidth="107.0" textFill="RED" />
+      <Label fx:id="cityError" layoutX="95.0" layoutY="497.0" prefHeight="17.0" prefWidth="107.0" textFill="RED" />
    </children>
 </AnchorPane>

@@ -60,7 +60,7 @@ public class shippingInfo implements Initializable{
      */
     @FXML
     TextField userCity; 
-
+    
     /**
      * User selects what state they are from
      */
@@ -78,6 +78,11 @@ public class shippingInfo implements Initializable{
      */
     @FXML
     TextField userZipCode;
+    @FXML
+    private Label zipError;
+    int zipCode;
+
+    
 
     private Stage stage;
     private Scene scene;
@@ -93,7 +98,10 @@ public class shippingInfo implements Initializable{
         String lastName = userLastName.getText();
         String address = userAddress.getText();
         String email = userEmailAddress.getText();
-        
+        try{
+        zipCode = Integer.parseInt(userZipCode.getText());
+    
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("shippingCosts.fxml"));
         root = loader.load();
         shippingCosts userInfo = loader.getController();
@@ -102,6 +110,15 @@ public class shippingInfo implements Initializable{
         scene  = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        }
+        
+        catch (NumberFormatException e){   
+            zipError.setText("Enter only numbers ");
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        
     }
     
 

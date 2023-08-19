@@ -73,6 +73,24 @@ public class shippingCosts implements Initializable{
         "Credit Card", "Debit Card", "Master Card"
     };
 
+    @FXML
+    TextField userCardNumber;
+    @FXML
+    private Label cardNumberError;
+    int cardNumber;
+       
+    @FXML
+    TextField userCardExpiration;
+    @FXML
+    private Label cardExpirationError;
+    int cardExpiration;
+
+    @FXML
+    TextField userCardCCV;
+    @FXML
+    private Label CCVError;
+    int CCV;
+
     /**
      * typeOfCard gets all the items in the array list for
      * shippingPrices gets all the items in the array list for shippingOptions
@@ -101,7 +119,7 @@ public class shippingCosts implements Initializable{
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
+    
     
     }
     /** 
@@ -109,6 +127,11 @@ public class shippingCosts implements Initializable{
      * @param event Something happens when user clicks a button
      */
     public void switchConfirmationPage(ActionEvent event)throws IOException{
+        try{
+            cardNumber = Integer.parseInt(userCardNumber.getText());
+            cardExpiration = Integer.parseInt(userCardExpiration.getText());
+            CCV = Integer.parseInt(userCardCCV.getText());
+
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("confirmationPage.fxml"));
         root = loader.load();
@@ -116,7 +139,16 @@ public class shippingCosts implements Initializable{
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        }
         
+    catch (NumberFormatException e){   
+        cardNumberError.setText("Enter 16 numbers only ");
+        cardExpirationError.setText("Enter valid month and year in format of 12 2023");
+        CCVError.setText("Enter 3 numbers only ");
+    }
+    catch (Exception e){
+        System.out.println(e);
+    }
 }
     
     }

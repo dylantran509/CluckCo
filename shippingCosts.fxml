@@ -14,13 +14,16 @@
       <AnchorPane prefHeight="25.0" prefWidth="1024.0" />
       <AnchorPane layoutX="-8.0" layoutY="386.0" prefHeight="390.0" prefWidth="592.0">
          <children>
-            <TextField layoutX="115.0" layoutY="75.0" prefHeight="25.0" prefWidth="343.0" promptText="Card Number" />
+            <TextField fx:id="userCardNumber" layoutX="115.0" layoutY="69.0" prefHeight="25.0" prefWidth="343.0" promptText="Card Number" />
+            <TextField fx:id="userCardExpiration" layoutX="115.0" layoutY="123.0" promptText="Expiration Date" />
+            <TextField fx:id="userCardCCV" layoutX="309.0" layoutY="123.0" prefHeight="25.0" prefWidth="149.0" promptText="Security Code" />
             <TextField layoutX="115.0" layoutY="176.0" prefHeight="25.0" prefWidth="343.0" promptText="Name on Card" />
-            <TextField layoutX="115.0" layoutY="123.0" promptText="Expiration Date" />
-            <TextField layoutX="309.0" layoutY="123.0" prefHeight="25.0" prefWidth="149.0" promptText="Security Code" />
             <Button layoutX="323.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchConfirmationPage" prefHeight="48.0" prefWidth="135.0" styleClass="pay-now" stylesheets="@cartColor.css" text="Pay Now" />
             <Button layoutX="115.0" layoutY="243.0" mnemonicParsing="false" onAction="#switchShippingInfo" prefHeight="29.0" prefWidth="135.0" text="Return to Information" />
             <ComboBox fx:id="typeOfCard" layoutX="115.0" layoutY="21.0" prefHeight="25.0" prefWidth="343.0" />
+            <Label fx:id="cardNumberError" layoutX="115.0" layoutY="94.0" prefHeight="25.0" prefWidth="343.0" textFill="RED" />
+            <Label fx:id="cardExpirationError" layoutX="115.0" layoutY="148.0" prefHeight="25.0" prefWidth="149.0" textFill="RED" />
+            <Label fx:id="CCVError" layoutX="309.0" layoutY="148.0" prefHeight="25.0" prefWidth="149.0" textFill="RED" />
          </children>
       </AnchorPane>
       <Label fx:id="userFullShipping" layoutX="106.0" layoutY="79.0" prefHeight="58.0" prefWidth="343.0" text="LABEL">

@@ -17,3 +17,12 @@
 .confirmation-page{
     -fx-background-color: #FFF8E3
 }
+
+.cluck-image{
+    width: 200px;
+    height: 200px;
+    background-image: url(Cluck_and_Co.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
