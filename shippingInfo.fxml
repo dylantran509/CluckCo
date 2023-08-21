@@ -11,6 +11,11 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" styleClass="gradient" stylesheets="@shippingColor.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shippingInfo">
    <children>
+      <Label layoutX="97.0" layoutY="236.0" prefHeight="25.0" prefWidth="145.0" text="Email Address">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
       <TextField fx:id="userEmailAddress" layoutX="97.0" layoutY="261.0" prefHeight="25.0" prefWidth="344.0" promptText="Email Address" />
       <ChoiceBox fx:id="shippingCountry" layoutX="97.0" layoutY="350.0" prefHeight="25.0" prefWidth="344.0" />
       <Label layoutX="97.0" layoutY="303.0" prefHeight="31.0" prefWidth="159.0" text="Shipping Address">
@@ -27,33 +32,43 @@
       <TextField fx:id="userLastName" layoutX="292.0" layoutY="391.0" promptText="Last Name" />
       <TextField fx:id="userAddress" layoutX="95.0" layoutY="431.0" prefHeight="25.0" prefWidth="344.0" promptText="Address" />
       <TextField fx:id="userCity" layoutX="95.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" promptText="City" />
+      <Label fx:id="cityError" layoutX="95.0" layoutY="497.0" prefHeight="17.0" prefWidth="107.0" textFill="RED" />
       <ComboBox fx:id="shippingStates" layoutX="216.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" />
       <TextField fx:id="userZipCode" layoutX="334.0" layoutY="472.0" prefHeight="25.0" prefWidth="107.0" promptText="Zip Code" />
+      <Label fx:id="zipError" layoutX="334.0" layoutY="497.0" prefHeight="17.0" prefWidth="107.0" textFill="RED" />
       <Button layoutX="256.0" layoutY="524.0" mnemonicParsing="false" onAction="#switchShippingCosts" prefHeight="43.0" prefWidth="185.0" text="Continue to Shipping" />
       <Button layoutX="97.0" layoutY="530.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="97.0" text="Cart" />
-      <AnchorPane layoutX="585.0" prefHeight="768.0" prefWidth="439.0" styleClass="cart-color" stylesheets="@cartColor.css">
+      <AnchorPane layoutX="585.0" prefHeight="768.0" prefWidth="439.0" styleClass="cart-color" stylesheets="@shippingColor.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
-            <Label layoutX="55.0" layoutY="533.0" prefHeight="43.0" prefWidth="329.0" text="Total:">
+            <Label layoutX="55.0" layoutY="428.0" prefHeight="43.0" prefWidth="269.0" text="Subtotal:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="userSubTotal" layoutX="324.0" layoutY="434.0" prefHeight="31.0" prefWidth="97.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="shippingCosts" layoutX="55.0" layoutY="479.0" prefHeight="43.0" prefWidth="385.0" text="Shipping:                                        Calculated at Next Step">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="533.0" prefHeight="43.0" prefWidth="269.0" text="Total:">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="shippingCosts" layoutX="55.0" layoutY="479.0" prefHeight="43.0" prefWidth="329.0" text="Shipping:                                        Calculated at Next Step">
+            <Label fx:id="userTotal" layoutX="324.0" layoutY="539.0" prefHeight="31.0" prefWidth="97.0">
                <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="55.0" layoutY="428.0" prefHeight="43.0" prefWidth="329.0" text="Subtotal:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="zipError" layoutX="334.0" layoutY="497.0" prefHeight="17.0" prefWidth="107.0" textFill="RED" />
-      <Label fx:id="cityError" layoutX="95.0" layoutY="497.0" prefHeight="17.0" prefWidth="107.0" textFill="RED" />
    </children>
 </AnchorPane>

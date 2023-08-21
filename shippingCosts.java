@@ -47,8 +47,8 @@ public class shippingCosts implements Initializable{
      * @param userLastName User last name
      * @param userAddress User address
      */
-    public void displayShippingAddress(String userFirstName, String userLastName, String userAddress, String userEmailAddress) {
-        userFullShipping.setText(userFirstName + " " + userLastName + "\n" + userAddress);
+    public void displayShippingAddress(String userFirstName, String userLastName, String userAddress, String userEmailAddress, String city, String zipcode) {
+        userFullShipping.setText(userFirstName + " " + userLastName + "\n" + userAddress + " " + city + ", " + zipcode);
     }
     /**
      * User gets to decide between what type of shipping
@@ -56,8 +56,16 @@ public class shippingCosts implements Initializable{
     @FXML
     private ChoiceBox<String> shippingPrices;
     private String[] shippingOptions = 
-    {"Standard:  4-7 Business Days                 $4.99", "Expedited: 1-3 Business Days                 $9.99"};
-
+    {"Standard:  4-7 Business Days                 $4.99", "Expedited: 1-3 Business Days                 $9.99"};{}
+    // if (shippingPrices == "Standard:  4-7 Business Days                 $4.99"){
+    //     double shipping = 4.99;
+    // } else if (shippingPrices == "Expedited: 1-3 Business Days                 $9.99"){
+    //     double shipping = 9.99;
+    // } else 
+    //     shipping = 0.00;
+    
+    
+    
 
     private Stage stage;
     private Scene scene;
@@ -77,7 +85,7 @@ public class shippingCosts implements Initializable{
     TextField userCardNumber;
     @FXML
     private Label cardNumberError;
-    int cardNumber;
+    long cardNumber;
        
     @FXML
     TextField userCardExpiration;
@@ -90,6 +98,18 @@ public class shippingCosts implements Initializable{
     @FXML
     private Label CCVError;
     int CCV;
+    @FXML
+    private Label userSubTotal;
+    double subTotal = 0.00;
+    
+    @FXML
+    private Label userShipping;
+    double shipping = 0.00;
+    @FXML
+    private Label userTotal;
+    double total = subTotal + shipping + 0.00;
+
+    
 
     /**
      * typeOfCard gets all the items in the array list for
@@ -97,11 +117,7 @@ public class shippingCosts implements Initializable{
      * @param location
      * @param resources
      */
-    @Override
-    public void initialize(URL location, ResourceBundle resources){
-        typeOfCard.getItems().addAll(Card);
-        shippingPrices.getItems().addAll(shippingOptions);
-    }
+    
 
 
 
@@ -128,7 +144,7 @@ public class shippingCosts implements Initializable{
      */
     public void switchConfirmationPage(ActionEvent event)throws IOException{
         try{
-            cardNumber = Integer.parseInt(userCardNumber.getText());
+            cardNumber = Long.parseLong(userCardNumber.getText());
             cardExpiration = Integer.parseInt(userCardExpiration.getText());
             CCV = Integer.parseInt(userCardCCV.getText());
 
@@ -141,16 +157,24 @@ public class shippingCosts implements Initializable{
         stage.show();
         }
         
-    catch (NumberFormatException e){   
-        cardNumberError.setText("Enter 16 numbers only ");
-        cardExpirationError.setText("Enter valid month and year in format of 12 2023");
-        CCVError.setText("Enter 3 numbers only ");
-    }
-    catch (Exception e){
+        catch (NumberFormatException e){   
+        cardNumberError.setText("Card Number: Enter 16 numbers only ");
+        cardExpirationError.setText("Expiration Date: Invalid Format ");
+        CCVError.setText("CCV: Enter 3 numbers found on the back of your card ");
+        }
+        catch (Exception e){
         System.out.println(e);
     }
 }
-    
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        typeOfCard.getItems().addAll(Card);
+        shippingPrices.getItems().addAll(shippingOptions);
+        userSubTotal.setText("" + String.format("%.2f",subTotal));
+        userTotal.setText("" + String.format("%.2f",total));
+        userShipping.setText("" + String.format("%.2f",total));
+    }
+
     }
 
 

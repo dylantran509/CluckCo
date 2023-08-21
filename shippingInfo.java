@@ -82,8 +82,19 @@ public class shippingInfo implements Initializable{
     private Label zipError;
     int zipCode;
 
+    @FXML
+    Label userSubTotal;
+    double subTotal = 0.00;
     
+    double shipping = 0.00;
+    
+    @FXML
+    Label userTotal;
+    double total = subTotal + shipping + 0.00;
 
+
+    
+    
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -98,14 +109,19 @@ public class shippingInfo implements Initializable{
         String lastName = userLastName.getText();
         String address = userAddress.getText();
         String email = userEmailAddress.getText();
+        String city = userCity.getText();
+        String zipcode = userZipCode.getText();
+        
+
         try{
         zipCode = Integer.parseInt(userZipCode.getText());
-    
+        
+        
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("shippingCosts.fxml"));
         root = loader.load();
         shippingCosts userInfo = loader.getController();
-        userInfo.displayShippingAddress(firstName, lastName, address, email);
+        userInfo.displayShippingAddress(firstName, lastName, address, email, city, zipcode);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene  = new Scene(root);
         stage.setScene(scene);
@@ -133,6 +149,8 @@ public class shippingInfo implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
     shippingCountry.getItems().addAll(Countries);
     shippingStates.getItems().addAll(States);
+    userSubTotal.setText("" + String.format("%.2f",subTotal));
+    userTotal.setText("" + String.format("%.2f",total));
 
 }
    
