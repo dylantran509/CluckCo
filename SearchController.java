@@ -1,15 +1,21 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import javafx.scene.Node;
 
 /**
  * a.) Class name: SearchController
@@ -26,9 +32,19 @@ import java.util.stream.Collectors;
 public class SearchController implements Initializable
 {
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     // ArrayList contains names of items along with their prices to be displayed accordingly with entered search term or terms
     ArrayList<String> products = new ArrayList<>(
-        Arrays.asList("Black Hoodie          $50.00", "Black Hat             $20.00", "Black Shirt           $25.00", "Sticker                $5.00")
+        Arrays.asList(
+            "Black Hoodie          $50.00",
+                 "Black Hat             $20.00", 
+                 "Black Shirt           $25.00", 
+                 "Sticker                $5.00",
+                 "White Hoodie          $60.00",
+                 "White Shirt           $30.00")
     );
 
     // text field for the interface - a search bar for users to type key words into
@@ -51,6 +67,29 @@ public class SearchController implements Initializable
         listView.getItems().clear();
         listView.getItems().addAll(searchList(searchBar.getText(), products));
     }
+
+    /**
+     * This method detects when the user presses the home button to return to the product page.
+     * @param event detection of click on home button to return to home page
+     */
+
+    @FXML
+    public void home(ActionEvent event) throws IOException{
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+        root = fxmlLoader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene  = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * This method initializes the list of product names and prices to be displayed.
+     * @param url resource for words to be taken into list
+     * @param resourceBundle resources for list tool to generate list
+     */
 
     /**
      * This method initializes the list of product names and prices to be displayed.
