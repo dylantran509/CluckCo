@@ -82,9 +82,17 @@ public class shippingInfo implements Initializable{
      */
     @FXML
     TextField userZipCode;
+
+    /**
+     * User inputs wrong zipcode and throws an error
+     */
     @FXML
     private Label zipError;
     int zipCode;
+
+    /**
+     * Starts subtotal/total with an initial value of $0.00 so there is no error when adding price
+     */
 
     @FXML
     Label userSubTotal;
@@ -103,7 +111,9 @@ public class shippingInfo implements Initializable{
     private Scene scene;
     private Parent root;
 
-    /** After user inputs shipping information, user gets to go to the next page to enter payment
+    /** 
+     * Users shipping info gets sent to next page and displayed
+     * After user inputs shipping information, user gets to go to the next page to enter payment
      * @param event Something happens when user clicks a button
      */
 	
@@ -145,6 +155,7 @@ public class shippingInfo implements Initializable{
     /**
      * shippingCountry gets all the items in the array list for Countries
      * shippingStates gets all the items in the array list for States
+     * references database for cart items and adds it to subtotal
      * @param location
      * @param resources
      */

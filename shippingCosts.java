@@ -3,6 +3,8 @@
  * Payment information is needed to put in by the user on
  * what card should be used.
  * @author S. Chang
+ * Last Updated: 8/21/2023
+ * Data Structure Used: ArrayList
  * @version 1.0
  */
 
@@ -80,23 +82,34 @@ public class shippingCosts implements Initializable{
         "Credit Card", "Debit Card", "Master Card"
     };
 
+
+    /**
+     * User enters card number
+     */
     @FXML
     TextField userCardNumber;
     @FXML
     private Label cardNumberError;
     long cardNumber;
        
+    /**
+     * User enters their card expiration month and year
+     */
     @FXML
     TextField userCardExpiration;
     @FXML
     private Label cardExpirationError;
     int cardExpiration;
 
+    /**
+     * User enters their card's CCV informationc
+     */
     @FXML
     TextField userCardCCV;
     @FXML
     private Label CCVError;
     int CCV;
+
     @FXML
     private Label userSubTotal;
     double subTotal = 0.00;
@@ -104,6 +117,7 @@ public class shippingCosts implements Initializable{
     @FXML
     private Label userShipping;
     double Shipping = 4.99;
+    
     @FXML
     private Label userTotal;
     double total = subTotal + Shipping + 0.00;
@@ -139,6 +153,7 @@ public class shippingCosts implements Initializable{
     }
     /** 
      * After user inputs shipping information, user gets to go to the confirmation page after payment
+     * Throws errors for miss entered information for user card information
      * @param event Something happens when user clicks a button
      */
     public void switchConfirmationPage(ActionEvent event)throws IOException{
@@ -165,10 +180,18 @@ public class shippingCosts implements Initializable{
         System.out.println(e);
     }
 }
+    /**
+     * shippingPrices gets all the items in the array list for shippingOptions
+     * typeOfCard gets all the items in the array list for Card
+     * references database for cart items and adds it to subtotal
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        typeOfCard.getItems().addAll(Card);
         shippingPrices.getItems().addAll(shippingOptions);
+        typeOfCard.getItems().addAll(Card);
+        
         
         shippingPrices.setOnAction(this::getShippingCost);
         
@@ -214,6 +237,10 @@ public class shippingCosts implements Initializable{
         
     }
 
+    /**
+     * shipping price gets changed accordingly
+     * @param event
+     */
     public void getShippingCost(ActionEvent event) {
         String shpCost = shippingPrices.getValue();
         if(shpCost.equals("Standard:  4-7 Business Days                 $4.99")){
@@ -228,7 +255,10 @@ public class shippingCosts implements Initializable{
         userShipping.setText(shpCost);
 
     }
-
+    /**
+     * shipping price gets changed accordingly
+     * @param temp
+     */
     public double Shipping(String temp){
         double shipping = 0;
         if(temp.equals("4.99")){
