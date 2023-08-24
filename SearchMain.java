@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * by the SearchController class.
  * e.) There are no data structures in this class.
  * f.) There are no algorithms in this class.
-*/
+ */
 
 public class SearchMain extends Application
 {
