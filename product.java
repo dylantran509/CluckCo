@@ -35,6 +35,11 @@ public class product {
         this.prodDPrice = prodDPrice;
     }
 
+    product(String prodName, double prodDPrice){
+        this.prodName = prodName;
+        this.prodDPrice = prodDPrice;
+    }
+
     /**
      * Gets the product name
      * @return returns product name
