@@ -3,8 +3,12 @@
  * where the delivery should take place
  * @author S. Chang
  * @version 1.0
+ * Last Updated: 8/21/2023
+ * Data Structure Used: ArrayList
  */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -152,7 +156,35 @@ public class shippingInfo implements Initializable{
     userSubTotal.setText("" + String.format("%.2f",subTotal));
     userTotal.setText("" + String.format("%.2f",total));
 
+    String filePath = "/Users/germanwong/Desktop/CluckCoFXProject/CluckCoFX/src/cart.txt";
+    double subtotal = 0;
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] elements = line.split("_"); 
+            
+            if (elements.length >= 3) {
+                String thirdElement = elements[2];
+            
+                try {
+                    double value = Double.parseDouble(thirdElement);
+                    subtotal += value;
+                } catch (NumberFormatException e) {
+                    // Handle if the third element is not a valid number
+                }
+            }
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
+     }
+
+
+     
+    userSubTotal.setText(Double.toString(subtotal));
+    userTotal.setText(Double.toString(subtotal));
+
+    }
+
 }
    
-}
-

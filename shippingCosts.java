@@ -7,7 +7,6 @@
  */
 
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -56,7 +55,7 @@ public class shippingCosts implements Initializable{
     @FXML
     private ChoiceBox<String> shippingPrices;
     private String[] shippingOptions = 
-    {"Standard:  4-7 Business Days                 $4.99", "Expedited: 1-3 Business Days                 $9.99"};{}
+    {"Standard:  4-7 Business Days                 $4.99"};{}
     // if (shippingPrices == "Standard:  4-7 Business Days                 $4.99"){
     //     double shipping = 4.99;
     // } else if (shippingPrices == "Expedited: 1-3 Business Days                 $9.99"){
@@ -104,10 +103,10 @@ public class shippingCosts implements Initializable{
     
     @FXML
     private Label userShipping;
-    double shipping = 0.00;
+    double Shipping = 4.99;
     @FXML
     private Label userTotal;
-    double total = subTotal + shipping + 0.00;
+    double total = subTotal + Shipping + 0.00;
 
     
 
@@ -170,11 +169,77 @@ public class shippingCosts implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         typeOfCard.getItems().addAll(Card);
         shippingPrices.getItems().addAll(shippingOptions);
+        
+        shippingPrices.setOnAction(this::getShippingCost);
+        
+        double shipping = 0.00;
+        String temp = userShipping.getText();
+
+        Shipping = Shipping(temp);
+
+        String filePath = "/Users/germanwong/Desktop/CluckCoFXProject/CluckCoFX/src/cart.txt";
+        double subtotal = 0;
+
+
+        System.out.println("b4 try catch Shipping : " + Shipping + " " + shipping);
+
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] elements = line.split("_"); 
+            
+            if (elements.length >= 3) {
+                String thirdElement = elements[2];
+            
+                try {
+                    double value = Double.parseDouble(thirdElement);
+                    subtotal += value;
+                } catch (NumberFormatException e) {
+                    // Handle if the third element is not a valid number
+                }
+            }
+            subTotal = subtotal;
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
+     }
+        System.out.println("Shipping : " + Shipping + " " + shipping);
+        double Total= subTotal + shipping;
         userSubTotal.setText("" + String.format("%.2f",subTotal));
-        userTotal.setText("" + String.format("%.2f",total));
-        userShipping.setText("" + String.format("%.2f",total));
+        userShipping.setText("" + String.format("%.2f",Shipping));
+        userTotal.setText("" + String.format("%.2f",Total +4.99));
+        
+     
+        
     }
 
+    public void getShippingCost(ActionEvent event) {
+        String shpCost = shippingPrices.getValue();
+        if(shpCost.equals("Standard:  4-7 Business Days                 $4.99")){
+            shpCost = "4.99";
+            Shipping = 4.99;
+           
+        }
+        else if(shpCost.equals("Expedited: 1-3 Business Days                 $9.99")){
+            shpCost = "9.99";
+            Shipping = 9.99;
+        }
+        userShipping.setText(shpCost);
+
     }
 
+    public double Shipping(String temp){
+        double shipping = 0;
+        if(temp.equals("4.99")){
+            shipping = 4.99;
+            Shipping = shipping;
 
+        }
+        else if(temp.equals("9.99")){
+            shipping = 9.99;
+            Shipping = shipping;
+        }
+        return shipping;
+    }
+}
