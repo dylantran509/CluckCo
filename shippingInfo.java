@@ -1,6 +1,15 @@
+/**
+ * Shipping information is needed to put in by the user on
+ * where the delivery should take place
+ * @author S. Chang
+ * @version 1.0
+ * Last Updated: 8/21/2023
+ * Data Structure Used: ArrayList
+ */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -9,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,62 +27,49 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class shippingInfo implements Initializable{
-    private Stage stage;
-	private Scene scene;
-	private Parent root;
-	
-	public void switchShippingCosts(ActionEvent event) throws IOException {
-        try {
-            Parent root = FXMLLoader(getClass().getResource("shippingCosts.fxml"));	
-        System.out.println();
-		Scene tableViewScene = new Scene(root);
-        System.out.println();	
-		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
-    } catch	(Exception e) { System.out.println(("invocation target exception occurred")); 
-    // itex.getCause();
- } 
-    }
-
-// scene = new Scene(root);
-		// stage.setScene(scene);
-		// stage.show();
-//         public Stage stage;
-//         public Scene scene;
-//         public Parent root;
-//     public void switchShippingCosts(ActionEvent event) throws IOException {
-//         Parent root = FXMLLoader.load(getClass().getResource("shippingCosts.fxml"));
-//         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//         scene = new Scene(root);
-//         stage.setScene(scene);
-//         stage.show();
-//         }
-    
-//      public void switchShippingInfo(ActionEvent event) throws IOException {
-//         Parent root = FXMLLoader.load(getClass().getResource("shippingInfo.fxml"));
-//         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//         scene = new Scene(root);
-//         stage.setScene(scene);
-//         stage.show();
-//         }
-    
-
-    private Parent FXMLLoader(URL resource) {
-        return null;
-    }
-
+    /** 
+     * User inputs their Email Address
+    */ 
     @FXML
-    private Label shippingLabel;
+	TextField userEmailAddress;
 
+    /**
+     * User selects what Country they are in
+     */
     @FXML
     private ChoiceBox<String> shippingCountry;
     private String[] Countries = 
     {"United States of America"};
 
+    /** 
+     * User inputs their Name
+    */ 
+    @FXML
+    TextField userFirstName;
+
+    /** 
+    * User inputs their Last Name
+    */
+    @FXML
+    TextField userLastName;
+    
+    /** 
+     * User inputs what address they live in
+    */
+    @FXML
+    TextField userAddress;
+    
+    /**
+     * User inputs what city
+     */
+    @FXML
+    TextField userCity; 
+    
+    /**
+     * User selects what state they are from
+     */
     @FXML
     private ComboBox<String> shippingStates;
-    
     private String[] States = 
     {
     "AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "MN", 
@@ -80,23 +77,114 @@ public class shippingInfo implements Initializable{
     "WV", "WI", "WY"
     };
 
+    /**
+     * User inputs what zip code they are in
+     */
     @FXML
-	TextField emailAddress;
-	
-	
- 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1){
-    shippingCountry.getItems().addAll(Countries);
-    shippingStates.getItems().addAll(States);
+    TextField userZipCode;
+    @FXML
+    private Label zipError;
+    int zipCode;
+
+    @FXML
+    Label userSubTotal;
+    double subTotal = 0.00;
+    
+    double shipping = 0.00;
+    
+    @FXML
+    Label userTotal;
+    double total = subTotal + shipping + 0.00;
+
 
     
-    // shippingCountry.setOnAction(this::getCountry);
-}
-    // public void getCountry (ActionEvent event){
-        // String myCountry = shippingCountry.getValue();
-    //     shippingLabel.setText(myCountry);
+    
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
-    // }
-}
+    /** After user inputs shipping information, user gets to go to the next page to enter payment
+     * @param event Something happens when user clicks a button
+     */
+	
+	public void switchShippingCosts(ActionEvent event) throws IOException{
+        
+        String firstName = userFirstName.getText();
+        String lastName = userLastName.getText();
+        String address = userAddress.getText();
+        String email = userEmailAddress.getText();
+        String city = userCity.getText();
+        String zipcode = userZipCode.getText();
+        
 
+        try{
+        zipCode = Integer.parseInt(userZipCode.getText());
+        
+        
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("shippingCosts.fxml"));
+        root = loader.load();
+        shippingCosts userInfo = loader.getController();
+        userInfo.displayShippingAddress(firstName, lastName, address, email, city, zipcode);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene  = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        
+        catch (NumberFormatException e){   
+            zipError.setText("Enter only numbers ");
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        
+    }
+    
+
+    /**
+     * shippingCountry gets all the items in the array list for Countries
+     * shippingStates gets all the items in the array list for States
+     * @param location
+     * @param resources
+     */
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+    shippingCountry.getItems().addAll(Countries);
+    shippingStates.getItems().addAll(States);
+    userSubTotal.setText("" + String.format("%.2f",subTotal));
+    userTotal.setText("" + String.format("%.2f",total));
+
+    String filePath = "/Users/germanwong/Desktop/CluckCoFXProject/CluckCoFX/src/cart.txt";
+    double subtotal = 0;
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] elements = line.split("_"); 
+            
+            if (elements.length >= 3) {
+                String thirdElement = elements[2];
+            
+                try {
+                    double value = Double.parseDouble(thirdElement);
+                    subtotal += value;
+                } catch (NumberFormatException e) {
+                    // Handle if the third element is not a valid number
+                }
+            }
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
+     }
+
+
+     
+    userSubTotal.setText(Double.toString(subtotal));
+    userTotal.setText(Double.toString(subtotal));
+
+    }
+
+}
+   
