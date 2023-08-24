@@ -5,7 +5,7 @@
  * @author German Wong, Dylan Tran, David Regio, Simon Chang
  * @version 1.0
  * Date:            7/20/2023
- * Last Updated:    8/15/2015
+ * Last Updated:    8/21/2015
  * Data Structure:  ArrayList
  *
  */
