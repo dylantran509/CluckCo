@@ -3,9 +3,9 @@
  * being sold in our site. It includes functions like search, add to
  * cart, and view cart. 
  * @author German Wong
- * @version 1.0
+ * @version 1.4
  * Date:            7/24/2023
- * Last Updated:    8/120/2015
+ * Last Updated:    8/21/2015
  * Data Structure:  ArrayList
  */
 
@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -54,7 +56,7 @@ public class homeControl implements Initializable {
     /**
      * Array that holds the product information
      */
-    public List<product> prodList = new ArrayList();
+    public List<product> prodList = new ArrayList<>();
     
     
     /**
@@ -98,16 +100,19 @@ public class homeControl implements Initializable {
         
     }
 
+    public String getUserFilePath(){
+        Path path = Paths.get("product.txt");
+        return path.toAbsolutePath().toString();
+    }
 
-    String filePath = "/Users/germanwong/Desktop/CluckCoFXProject/CluckCoFX/src/product.txt";
 
     /**
      * Reads input "product.txt" file
      */
     void readfile(){
         
-        File file = new File(filePath);
-
+        File file = new File(getUserFilePath());
+        
         try {                                                         
             FileReader fileReader = new FileReader(file);                  
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -137,15 +142,6 @@ public class homeControl implements Initializable {
 
         product temp = new product(prod[0],"/img/"+prod[1],prod[2],price);
         prodList.add(temp);
-
-
-        // System.out.println("");
-        // System.out.println("Class: homeControl.java");
-        // System.out.println("Method Tested: void setData(String line)");
-        // System.out.println("Expected: Black Hoodie" );
-        // System.out.println("Observed: " + prod[0]);
-        // System.out.println("Pass/No Pass: Pass" );
-        // System.out.println("");
     }
 
     /**
@@ -155,7 +151,7 @@ public class homeControl implements Initializable {
      */
     public void toCart(ActionEvent event) throws IOException{
         
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cart.fxml"));
         root = fxmlLoader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -174,6 +170,7 @@ public class homeControl implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+}
 
  
 
